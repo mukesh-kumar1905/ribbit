@@ -1,4 +1,4 @@
-Ribbit::Application.routes.draw do
+RibbitApp::Application.routes.draw do
   resources :sessions
   resources :users
 
