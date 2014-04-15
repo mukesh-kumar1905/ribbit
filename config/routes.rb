@@ -8,6 +8,7 @@ RibbitApp::Application.routes.draw do
 
   get 'logout' =>'sessions#destroy',as: 'logout'
 
+  get 'buddies' => 'users#buddies',as:'buddies'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
