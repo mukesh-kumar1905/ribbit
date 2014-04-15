@@ -2,9 +2,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
-
+gem 'less-rails'
+gem 'therubyracer'
 group :development, :test do
-	gem 'mysql'
+	gem 'sqlite3'
 	gem 'rename'
 end
 group :production do
