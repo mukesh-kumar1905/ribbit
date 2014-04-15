@@ -3,7 +3,9 @@
 <% end %>
 
 <div id="ribbits" class="panel left">
-	<h1>Ribbit Profile</h1>
+	<h1>Ribbit Profile
+	<%=  link_to "(edit profile)",edit_user_path(@user) if @user==current_user %>
+	</h1>
 	<div class="ribbitWrapper">
 		<img src="<%= @user.avatar_url %>" class="avatar">
 		<span class="name"><%= @user.name %></span>@<%= @user.username%>
@@ -15,6 +17,9 @@
 		<span class="spacing">
 			<%= @user.followeds.length%> Following
 		</span>
+		<% if @user.bio %>
+			<p><%= @user.bio %></p>
+		<% end%>
 		<% if current_user and current_user != @user %>
 			<% if current_user.following? @user %>
 				<%= form_for @relationship ,method: :delete do |f|%>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
 	def new
 		if current_user
 			redirect_to buddies_path
@@ -6,6 +7,7 @@ class UsersController < ApplicationController
 			@user=User.new
 		end
 	end
+
 	def create
 		@user=User.new(post_params(params))
 		if @user.save
@@ -13,6 +15,20 @@ class UsersController < ApplicationController
 			redirect_to @user,notice:"Thank you for signing up for Ribbit."
 		else
 			render 'new'
+		end
+	end
+
+	def edit
+		@user=User.find(params[:id])
+		redirect_to @user unless current_user==@user			
+	end
+
+	def update
+		@user=User.find(params[:id])
+		if @user.update_attributes(post_params(params))
+			redirect_to @user,notice: "Profile updated!"
+		else
+			render 'edit'
 		end
 	end
 
@@ -39,11 +55,11 @@ class UsersController < ApplicationController
 			redirect_to root_url
 		end
 	end
-	def destroy
 
-	end
 	private
+
 	def post_params(params)
 		params.require(:user).permit(:avatar_url,:bio,:email,:name,:password,:password_confirmation ,:username)
 	end
+	
 end
